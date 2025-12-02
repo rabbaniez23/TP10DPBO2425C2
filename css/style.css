@@ -1,0 +1,213 @@
+/* --- RESET & GLOBAL VARIABLES --- */
+:root {
+    --primary-color: #4e73df; /* Biru Modern */
+    --secondary-color: #858796;
+    --success-color: #1cc88a; /* Hijau Teal */
+    --danger-color: #e74a3b; /* Merah Soft */
+    --dark-bg: #2c3e50;
+    --light-bg: #f8f9fc;
+    --card-bg: #ffffff;
+    --text-color: #5a5c69;
+    --heading-color: #2c3e50;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- SIDEBAR NAVIGATION --- */
+nav {
+    width: 250px;
+    background-color: var(--dark-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    position: fixed; /* Supaya sidebar diam saat scroll */
+    height: 100%;
+}
+
+nav h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    color: #ecf0f1;
+}
+
+nav a {
+    text-decoration: none;
+    color: #bdc3c7;
+    padding: 15px 25px;
+    border-left: 5px solid transparent;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+nav a:hover {
+    background-color: #34495e;
+    color: white;
+    border-left: 5px solid var(--success-color);
+}
+
+/* --- MAIN CONTENT AREA --- */
+main {
+    margin-left: 250px; /* Memberi ruang untuk sidebar */
+    padding: 40px;
+    width: 100%;
+}
+
+/* --- TYPOGRAPHY & HEADINGS --- */
+h3 {
+    color: var(--heading-color);
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+hr {
+    display: none; /* Kita hilangkan garis bawaan HTML yang jelek */
+}
+
+/* --- TABLES (Daftar Data) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Supaya sudut tumpul terlihat */
+    margin-top: 20px;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+table tr:hover {
+    background-color: #f1f2f6; /* Efek hover baris */
+}
+
+/* --- LINKS AS BUTTONS (Tombol Aksi) --- */
+/* Tombol Tambah Data (Biasanya ada di atas tabel) */
+main > a {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: 0.2s;
+}
+
+main > a:hover {
+    background-color: #3751a0;
+    transform: translateY(-2px);
+}
+
+/* Tombol Edit & Hapus di dalam Tabel */
+table a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Tombol Edit (Warna Kuning/Oranye) */
+table a[href*="id="]:not([onclick]) {
+    background-color: #f6c23e;
+    color: #fff;
+}
+
+/* Tombol Hapus (Warna Merah) */
+table a[onclick] {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* --- FORMS (Input Data) --- */
+form {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 600px; /* Supaya form tidak terlalu lebar */
+}
+
+label {
+    font-weight: bold;
+    color: var(--heading-color);
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 15px;
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="date"], 
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d3e2;
+    border-radius: 5px;
+    box-sizing: border-box; /* Agar padding tidak merusak lebar */
+    font-size: 16px;
+    background-color: #fdfdfd;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.3);
+}
+
+/* Tombol Submit di Form */
+button[type="submit"] {
+    background-color: var(--success-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #17a673;
+}
+
+/* Tombol Batal di Form */
+form a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
