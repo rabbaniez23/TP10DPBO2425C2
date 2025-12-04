@@ -10,16 +10,19 @@ $pelatih_list = $viewModel->fetchAll();
 <table border="1" cellpadding="10" cellspacing="0">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>No</th>
             <th>Nama Pelatih</th>
             <th>Keahlian</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
-        <?php while($row = $pelatih_list->fetch_assoc()): ?>
+        <?php 
+        $no = 1; 
+        while($row = $pelatih_list->fetch_assoc()): 
+        ?>
         <tr>
-            <td><?= $row['id'] ?></td>
+            <td><?= $no++ ?></td>
             <td><?= $row['nama_pelatih'] ?></td>
             <td><?= $row['keahlian'] ?></td>
             <td>

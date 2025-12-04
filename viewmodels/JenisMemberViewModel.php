@@ -24,22 +24,25 @@ class JenisMemberViewModel {
         $db = $database->getConnection();
         $jenis = new JenisMember($db);
 
+        // CREATE
         if (isset($_POST['submit_jenis'])) {
             $jenis->nama_jenis = $_POST['nama'];
             $jenis->harga = $_POST['harga'];
-            if($jenis->create()){ header("Location: index.php?page=jenismember"); }
+            if($jenis->create()){ header("Location: index.php?page=jenismember"); exit; }
         }
 
+        // UPDATE
         if (isset($_POST['update_jenis'])) {
             $jenis->id = $_POST['id'];
             $jenis->nama_jenis = $_POST['nama'];
             $jenis->harga = $_POST['harga'];
-            if($jenis->update()){ header("Location: index.php?page=jenismember"); }
+            if($jenis->update()){ header("Location: index.php?page=jenismember"); exit; }
         }
 
+        // DELETE
         if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
             $jenis->id = $_GET['id'];
-            if($jenis->delete()){ header("Location: index.php?page=jenismember"); }
+            if($jenis->delete()){ header("Location: index.php?page=jenismember"); exit; }
         }
     }
 }

@@ -1,32 +1,32 @@
 <?php
-include_once 'viewmodels/JenisMemberViewModel.php';
+// Gunakan __DIR__ agar tidak error "No such file"
+include_once __DIR__ . '/../viewmodels/JenisMemberViewModel.php';
+
 $viewModel = new JenisMemberViewModel();
-$viewModel->handleRequest();
-$jenis_list = $viewModel->fetchAll();
+$data = null;
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($id) {
+    $data = $viewModel->fetchOne($id);
+}
 ?>
 
-<h3>Daftar Jenis Membership</h3>
-<a href="index.php?page=jenismember_form">Tambah Jenis</a>
-<table border="1" cellpadding="10" cellspacing="0">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nama Jenis</th>
-            <th>Harga</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php while($row = $jenis_list->fetch_assoc()): ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= $row['nama_jenis'] ?></td>
-            <td>Rp <?= number_format($row['harga'], 0, ',', '.') ?></td>
-            <td>
-                <a href="index.php?page=jenismember_form&id=<?= $row['id'] ?>">Edit</a> |
-                <a href="index.php?page=jenismember&action=delete&id=<?= $row['id'] ?>" onclick="return confirm('Hapus?')">Hapus</a>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
+<h3><?= $id ? "Edit Jenis Membership" : "Tambah Jenis Membership" ?></h3>
+
+<form action="index.php?page=jenismember" method="POST">
+    <?php if ($id): ?>
+        <input type="hidden" name="id" value="<?= $data->id ?>">
+    <?php endif; ?>
+
+    <label>Nama Jenis (misal: Gold):</label><br>
+    <input type="text" name="nama" value="<?= $id ? $data->nama_jenis : '' ?>" required placeholder="Masukkan nama paket..."><br><br>
+
+    <label>Harga (Rp):</label><br>
+    <input type="number" name="harga" value="<?= $id ? $data->harga : '' ?>" required placeholder="Masukkan harga..."><br><br>
+
+    <button type="submit" name="<?= $id ? 'update_jenis' : 'submit_jenis' ?>">
+        <?= $id ? "Update Data" : "Simpan Data" ?>
+    </button>
+    
+    <a href="index.php?page=jenismember">Batal</a>
+</form>
